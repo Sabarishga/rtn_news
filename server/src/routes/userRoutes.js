@@ -85,20 +85,4 @@ router.get("/notifications/:email", async (req, res) => {
   }
 });
 
-// Clear all notifications for a user
-router.delete("/notifications/:email", async (req, res) => {
-  try {
-    const user = await User.findOne({ email: req.params.email.toLowerCase() });
-    if (!user) return res.status(404).json({ message: "User not found" });
-
-    const result = await Notification.deleteMany({ user: user._id });
-    res.json({
-      message: "Notifications cleared",
-      deletedCount: result.deletedCount,
-    });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
 module.exports = router;

@@ -49,8 +49,6 @@ const runNewsAlertCheck = async () => {
   }
 };
 
-// Runs the check every 15 minutes; each user is only actually alerted once their
-// own frequency preference (immediate/hourly/daily) has elapsed.
 const startNewsAlertJob = () => {
   cron.schedule("*/15 * * * *", () => {
     console.log("Running news alert check...");
